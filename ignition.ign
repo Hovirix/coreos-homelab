@@ -9,7 +9,7 @@
           "wheel"
         ],
         "name": "core",
-        "passwordHash": "$6$Kf42C/nZJ$eJxoNQGlTjM6gA6Ct8XqWr7b6gn7Y7j4bGqv4EVD2tUufXnZXZEKxG5vIt5LJfR3b1Bx/rtdgY8BpxshB6T5q0",
+        "passwordHash": "$y$j9T$dwP1dCxLNaVpcEUlVVgAu/$OnAb0XHbDOdoCL4PO19Gx//Aiekbmb1FSgwh5vQMBh1",
         "sshAuthorizedKeys": [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBjCf1PpvoMshFkoyjFOYUJ6/pLexwEFqr29COJawkoB"
         ]
