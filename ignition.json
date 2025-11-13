@@ -1,0 +1,41 @@
+{
+  "ignition": {
+    "version": "3.5.0"
+  },
+  "kernelArguments": {
+    "shouldExist": [
+      "debugfs=off",
+      "disable_ipv6=1",
+      "hibernate=no",
+      "init_on_alloc=1",
+      "init_on_free=1",
+      "lockdown=confidentiality",
+      "module.sig_enforce=1",
+      "oops=panic",
+      "page_alloc.shuffle=1",
+      "pti=on",
+      "randomize_kstack_offset=on",
+      "slab_nomerge",
+      "vsyscall=none",
+      "panic=1",
+      "boot.panic_on_fail",
+      "vga=0x317",
+      "nomodeset",
+      "intel_pstate=active",
+      "rcutree.enable_rcu_lazy=1"
+    ]
+  },
+  "passwd": {
+    "users": [
+      {
+        "groups": [
+          "wheel"
+        ],
+        "name": "core",
+        "sshAuthorizedKeys": [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBjCf1PpvoMshFkoyjFOYUJ6/pLexwEFqr29COJawkoB"
+        ]
+      }
+    ]
+  }
+}

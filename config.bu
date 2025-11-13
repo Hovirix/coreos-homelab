@@ -1,0 +1,98 @@
+variant: fcos
+version: 1.6.0
+
+# storage:
+#   disks:
+#     - device: /dev/disk/by-id/nvme-WD_BLACK_SN850X_2000GB_24517E4ABM06
+#       wipe_table: true
+#       partitions:
+#         - label: ESP
+#           number: 1
+#           size_mib: 512
+#           type_guid: c12a7328-f81f-11d2-ba4b-00a0c93ec93b  # EFI System
+#         - label: luks
+#           number: 2
+#           size_mib: 0
+#           type_guid: ca7d7ccb-63ed-4c53-861c-1742536059cc  # Linux LUKS
+#     - device: /dev/disk/by-id/ata-512GB_SSD_MQ02W52300963
+#       wipe_table: true
+#       partitions:
+#         - label: backup
+#           number: 1
+#           size_mib: 0
+
+#   luks:
+#     - name: crypted
+#       device: /dev/disk/by-partlabel/luks
+#       wipe_volume: true
+#       discard: true
+#       clevis:
+#         tpm2: true
+
+#   filesystems:
+#     - device: /dev/disk/by-partlabel/ESP
+#       format: vfat
+#       wipe_filesystem: true
+#       path: /boot
+#       mount_options:
+#         - defaults
+#         - nosuid
+#         - nodev
+#         - noexec
+#         - umask=0077
+
+#     - device: /dev/mapper/crypted
+#       format: ext4
+#       wipe_filesystem: true
+#       path: /
+#       mount_options:
+#         - defaults
+#         - noatime
+
+#     - device: /dev/disk/by-partlabel/backup
+#       format: xfs
+#       wipe_filesystem: true
+#       path: /backup
+#       mount_options:
+#         - noatime
+#         - nofail
+#         - nodev
+#         - nosuid
+
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBjCf1PpvoMshFkoyjFOYUJ6/pLexwEFqr29COJawkoB"
+      groups:
+        - wheel
+
+kernel_arguments:
+  should_exist:
+    # Hardening
+    - debugfs=off
+    - disable_ipv6=1
+    - hibernate=no
+    - init_on_alloc=1
+    - init_on_free=1
+    - lockdown=confidentiality
+    - module.sig_enforce=1
+    - oops=panic
+    - page_alloc.shuffle=1
+    - pti=on
+    - randomize_kstack_offset=on
+    - slab_nomerge
+    - vsyscall=none
+
+    # Panic handling
+    - panic=1
+    - boot.panic_on_fail
+    - vga=0x317
+    - nomodeset
+
+    # Power saving
+    - intel_pstate=active
+    - rcutree.enable_rcu_lazy=1
+
+
+
