@@ -1,0 +1,63 @@
+log:
+  level: INFO
+  format: json
+
+api:
+  debug: false
+  insecure: false
+  dashboard: true
+
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      storage: "acme.json"
+      dnsChallenge:
+        provider: "cloudflare"
+        resolvers:
+          - "1.1.1.1:53"
+          - "8.8.8.8:53"
+
+entryPoints:
+  web:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+  websecure:
+    address: ":443"
+    asDefault: true
+    http:
+      tls:
+        certResolver: letsencrypt
+
+tls:
+  options:
+    default:
+      sniStrict: true
+      minVersion: VersionTLS13
+    intermediate:
+      minVersion: VersionTLS12
+      cipherSuites:
+        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
+        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305
+        - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+http:
+  routers:
+    dashboard:
+      rule: Host(`traefik.nemnix.site`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))
+      service: api@internal
+
+    vaultwarden:
+      rule: "Host(`vault.example.com`)"
+      service: "vaultwarden"
+
+  services:
+    vaultwarden:
+      loadBalancer:
+        servers:
+          - url: "http://vaultwarden:8080"

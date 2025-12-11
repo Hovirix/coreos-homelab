@@ -1,0 +1,15 @@
+[Unit]
+Description=Vaultwarden quadlet container
+After=network-online.target
+
+[Container]
+Image=ghcr.io/dani-garcia/vaultwarden:latest
+AutoUpdate=registry
+ContainerName=valtwarden
+Exec=/start.sh
+EnvironmentFile=/etc/vaultwarden.env
+PublishPort=8080:8080
+Volume=/srv/vaultwarden:/data
+
+[Install]
+WantedBy=default.target

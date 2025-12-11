@@ -1,0 +1,20 @@
+[Unit]
+Description=Traefik Reverse Proxy
+After=network-online.target
+
+[Container]
+Image=docker.io/library/traefik:latest
+ContainerName=traefik
+NoNewPrivileges=true
+PublishPort=80:80
+PublishPort=443:443
+Volume=/srv/traefik/certs:/certs:ro
+Volume=/srv/traefik/letsencrypt:/letsencrypt
+Volume=/srv/traefik/dynamic:/etc/traefik/dynamic:ro
+
+[Service]
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=default.target
