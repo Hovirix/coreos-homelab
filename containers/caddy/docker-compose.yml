@@ -1,0 +1,41 @@
+services:
+  caddy:
+    container_name: "caddy"
+    image: docker.io/library/caddy:2.11
+    restart: unless-stopped
+
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro,Z
+      - caddy_data:/data:Z
+      - caddy_config:/config:Z
+
+    networks:
+      - proxy
+
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_ADMIN
+
+    security_opt:
+      - no-new-privileges
+
+    logging:
+      driver: journald
+
+    env_file:
+    - .env
+
+volumes:
+  caddy_data:
+    external: true
+  caddy_config:
+
+networks:
+  proxy:
+    external: true

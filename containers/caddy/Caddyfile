@@ -1,0 +1,21 @@
+{
+    debug
+    admin off
+    email hovirix@tutanota.com
+    acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+}
+
+(security_headers) {
+	header {
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy strict-origin-when-cross-origin
+		Permissions-Policy "geolocation=(), microphone=(), camera=()"
+	}
+}
+
+vault.nemnix.site {
+    encode zstd gzip
+    import security_headers
+	reverse_proxy vaultwarden:8080
+}
