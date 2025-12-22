@@ -1,0 +1,29 @@
+[Unit]
+Description=Traefik reverse proxy
+After=network-online.target
+
+[Container]
+Image=docker.io/library/traefik:v3.6.5
+
+Network=proxy
+Network=apps
+
+PublishPort=80:80
+PublishPort=443:443
+Volume=traefik-certs.volume:/certs:Z
+Volume=traefik-letsencrypt.volume:/letsencrypt:Z
+Volume=traefik-config.volume:/etc/traefik/dynamic:ro,Z
+
+# DropCapability=ALL
+# AddCapability=CAP_NET_BIND_SERVICE
+# NoNewPrivileges=true
+# ReadOnly=true
+# ReadOnlyTmpfs=true
+
+[Service]
+Restart=always
+RestartSec=5s
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

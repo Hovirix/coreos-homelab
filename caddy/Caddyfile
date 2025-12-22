@@ -1,8 +1,8 @@
 {
-    debug
-    admin off
-    email hovirix@tutanota.com
-    acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	debug
+	admin off
+	email hovirix@tutanota.com
+	acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
 }
 
 (security_headers) {
@@ -15,7 +15,7 @@
 }
 
 vault.nemnix.site {
-    encode zstd gzip
-    import security_headers
+	encode zstd gzip
+	import security_headers
 	reverse_proxy vaultwarden:8080
 }

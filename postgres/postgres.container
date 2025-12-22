@@ -1,0 +1,27 @@
+[Unit]
+Description=PostgreSQL quadlet
+
+[Container]
+Image=docker.io/library/postgres:18
+
+Network=db.network
+NetworkAlias=postgres
+
+EnvironmentFile=%h/.config/containers/postgres.env
+
+Volume=postgres-data.volume:/var/lib/postgresql/data:Z
+
+# ReadOnly=true
+# ReadOnlyTmpfs=true
+# NoNewPrivileges=true
+# DropCapability=ALL
+# AddCapability=CAP_CHOWN CAP_DAC_OVERRIDE CAP_FOWNER CAP_SETUID CAP_SETGID
+
+Notify=healthy
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target

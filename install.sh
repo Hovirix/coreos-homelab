@@ -1,3 +1,18 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-sudo rpm-ostree install cockpit-system cockpit-storaged cockpit-networkmanager cockpit-ostree cockpit-podman
+set -euo pipefail
+
+packages=(
+  stow
+  cockpit-system
+  cockpit-ostree
+  cockpit-storaged
+  cockpit-networkmanager
+)
+
+echo "Layering packages with rpm-ostree..."
+sudo rpm-ostree install "${packages[@]}" --apply-live >/dev/null || true
+
+# --------------------------------------------------
+# Podman secrets (to be implemented)
+# --------------------------------------------------

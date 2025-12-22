@@ -1,0 +1,26 @@
+[Unit]
+Description=Vaultwarden quadlet
+After=network-online.target
+
+[Container]
+Image=ghcr.io/dani-garcia/vaultwarden:latest
+AutoUpdate=registry
+
+Network=apps
+NetworkAlias=vaultwarden
+
+EnvironmentFile=%h/.config/containers/vaultwarden.env
+
+Volume=vaultwarden-data.volume:/data:Z
+
+# ReadOnly=true
+# ReadOnlyTmpfs=true
+# NoNewPrivileges=true
+# DropCapability=ALL
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=default.target
