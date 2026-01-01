@@ -1,0 +1,23 @@
+[Unit]
+Description=Authentik Worker
+Requires=postgresql.service
+After=postgresql.service
+
+[Container]
+Image=ghcr.io/goauthentik/server:2025.10.3
+Command=worker
+
+EnvFile=.env
+
+Network=apps
+
+Volume=./media:/media
+Volume=./certs:/certs
+Volume=./custom-templates:/templates
+
+[Service]
+Restart=always
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target
