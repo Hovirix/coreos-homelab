@@ -19,7 +19,8 @@
       "panic=1",
       "boot.panic_on_fail",
       "intel_pstate=active",
-      "rcutree.enable_rcu_lazy=1"
+      "rcutree.enable_rcu_lazy=1",
+      "net.ipv4.ip_unprivileged_port_start=80"
     ]
   },
   "passwd": {
@@ -41,19 +42,12 @@
         "device": "/dev/disk/by-id/nvme-WD_BLACK_SN850X_2000GB_24517E4ABM06",
         "partitions": [
           {
-            "label": "ESP",
-            "number": 1,
-            "sizeMiB": 512,
-            "typeGuid": "c12a7328-f81f-11d2-ba4b-00a0c93ec93b"
-          },
-          {
             "label": "luks",
-            "number": 2,
+            "number": 4,
             "sizeMiB": 0,
             "typeGuid": "ca7d7ccb-63ed-4c53-861c-1742536059cc"
           }
-        ],
-        "wipeTable": true
+        ]
       },
       {
         "device": "/dev/disk/by-id/ata-512GB_SSD_MQ02W52300963",
@@ -69,23 +63,9 @@
     ],
     "filesystems": [
       {
-        "device": "/dev/disk/by-partlabel/ESP",
-        "format": "vfat",
-        "mountOptions": [
-          "defaults",
-          "nosuid",
-          "nodev",
-          "noexec",
-          "umask=0077"
-        ],
-        "path": "/boot/efi",
-        "wipeFilesystem": true
-      },
-      {
         "device": "/dev/mapper/crypted",
-        "format": "ext4",
+        "format": "xfs",
         "mountOptions": [
-          "defaults",
           "noatime"
         ],
         "path": "/",

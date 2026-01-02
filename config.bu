@@ -4,18 +4,9 @@ version: 1.6.0
 storage:
   disks:
     - device: /dev/disk/by-id/nvme-WD_BLACK_SN850X_2000GB_24517E4ABM06
-      wipe_table: true
       partitions:
-        - label: EFI-SYSTEM
-          number: 1
-          size_mib: 512
-          type_guid: c12a7328-f81f-11d2-ba4b-00a0c93ec93b  # EFI System
-        - label: boot
-          number: 2
-          size_mib: 1024
-          type_guid: 0fc63daf-8483-4772-8e79-3d69d8477de4  # Linux filesystem
         - label: luks
-          number: 3
+          number: 4
           size_mib: 0
           type_guid: ca7d7ccb-63ed-4c53-861c-1742536059cc  # Linux LUKS
 
@@ -35,31 +26,11 @@ storage:
         tpm2: true
 
   filesystems:
-    - device: /dev/disk/by-partlabel/EFI-SYSTEM
-      format: vfat
-      wipe_filesystem: true
-      path: /boot/efi
-      mount_options:
-        - defaults
-        - nosuid
-        - nodev
-        - noexec
-        - umask=0077
-
-    - device: /dev/disk/by-partlabel/boot
-      format: ext4
-      wipe_filesystem: true
-      path: /boot
-      mount_options:
-        - defaults
-        - noatime
-
     - device: /dev/mapper/crypted
       format: xfs
       wipe_filesystem: true
       path: /
       mount_options:
-        - defaults
         - noatime
 
     - device: /dev/disk/by-partlabel/backup
