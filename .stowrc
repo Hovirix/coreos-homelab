@@ -1,4 +1,1 @@
 --target=~/.config/containers/systemd
---ignore=.stowrc
---ignore=README.md
---ignore=^traefik/
