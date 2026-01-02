@@ -2,13 +2,13 @@ variant: fcos
 version: 1.6.0
 
 storage:
-  disks:
-    - device: /dev/disk/by-id/ata-512GB_SSD_MQ02W52300963
-      wipe_table: true
-      partitions:
-        - label: backup
-          number: 1
-          size_mib: 0
+  # disks:
+  #   - device: /dev/disk/by-id/ata-512GB_SSD_MQ02W52300963
+  #     wipe_table: true
+  #     partitions:
+  #       - label: backup
+  #         number: 1
+  #         size_mib: 0
 
   luks:
     - name: root
@@ -26,15 +26,15 @@ storage:
       label: root
       wipe_filesystem: true
 
-    - device: /dev/disk/by-partlabel/backup
-      format: xfs
-      wipe_filesystem: true
-      path: /backup
-      mount_options:
-        - noatime
-        - nofail
-        - nodev
-        - nosuid
+    # - device: /dev/disk/by-partlabel/backup
+    #   format: xfs
+    #   wipe_filesystem: true
+    #   path: /backup
+    #   mount_options:
+    #     - noatime
+    #     - nofail
+    #     - nodev
+    #     - nosuid
 
 passwd:
   users:

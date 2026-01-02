@@ -37,37 +37,12 @@
     ]
   },
   "storage": {
-    "disks": [
-      {
-        "device": "/dev/disk/by-id/ata-512GB_SSD_MQ02W52300963",
-        "partitions": [
-          {
-            "label": "backup",
-            "number": 1,
-            "sizeMiB": 0
-          }
-        ],
-        "wipeTable": true
-      }
-    ],
     "filesystems": [
       {
         "device": "/dev/mapper/root",
         "format": "xfs",
         "label": "root",
         "path": "/",
-        "wipeFilesystem": true
-      },
-      {
-        "device": "/dev/disk/by-partlabel/backup",
-        "format": "xfs",
-        "mountOptions": [
-          "noatime",
-          "nofail",
-          "nodev",
-          "nosuid"
-        ],
-        "path": "/backup",
         "wipeFilesystem": true
       }
     ],
