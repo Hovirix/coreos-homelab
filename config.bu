@@ -21,6 +21,7 @@ storage:
 
   filesystems:
     - device: /dev/mapper/root
+      path: /
       format: xfs
       label: root
       wipe_filesystem: true

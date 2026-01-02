@@ -55,6 +55,7 @@
         "device": "/dev/mapper/root",
         "format": "xfs",
         "label": "root",
+        "path": "/",
         "wipeFilesystem": true
       },
       {
