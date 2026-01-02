@@ -9,14 +9,10 @@ AutoUpdate=registry
 Network=apps
 NetworkAlias=vaultwarden
 
-EnvironmentFile=./vaultwarden.env
+# Environment=SIGNUPS_ALLOWED=false
+Environment=DOMAIN=https://nemnix.site
 
 Volume=vaultwarden-data.volume:/data:Z
-
-# ReadOnly=true
-# ReadOnlyTmpfs=true
-# NoNewPrivileges=true
-# DropCapability=ALL
 
 [Service]
 Restart=always

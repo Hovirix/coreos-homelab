@@ -2,7 +2,7 @@
 Description=Caddy reverse proxy
 
 [Container]
-Image=docker.io/library/caddybuilds/caddy-cloudflare:alpine
+Image=docker.io/caddybuilds/caddy-cloudflare:alpine
 
 Network=proxy
 Network=apps
