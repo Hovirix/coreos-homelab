@@ -33,7 +33,7 @@ storage:
     - device: /dev/disk/by-partlabel/ESP
       format: vfat
       wipe_filesystem: true
-      path: /boot
+      path: /boot/efi
       mount_options:
         - defaults
         - nosuid
@@ -90,6 +90,9 @@ kernel_arguments:
     # Power saving
     - intel_pstate=active
     - rcutree.enable_rcu_lazy=1
+
+    # Networking
+    - net.ipv4.ip_unprivileged_port_start=80
 
 
 
