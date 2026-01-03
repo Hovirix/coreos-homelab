@@ -40,9 +40,9 @@ storage:
     - path: /home/core/.ssh/authorized_keys
       mode: 0600
       user:
-        name: core
+        id: 1000
       group:
-        name: core
+        id: 1000
       contents:
         inline: |
           ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBjCf1PpvoMshFkoyjFOYUJ6/pLexwEFqr29COJawkoB

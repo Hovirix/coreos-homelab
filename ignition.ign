@@ -27,11 +27,11 @@
     "files": [
       {
         "group": {
-          "name": "core"
+          "id": 1000
         },
         "path": "/home/core/.ssh/authorized_keys",
         "user": {
-          "name": "core"
+          "id": 1000
         },
         "contents": {
           "compression": "",
