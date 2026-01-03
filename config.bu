@@ -36,11 +36,17 @@ storage:
     #     - nodev
     #     - nosuid
 
-passwd:
-  users:
-    - name: core
-      ssh_authorized_keys:
-        - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBjCf1PpvoMshFkoyjFOYUJ6/pLexwEFqr29COJawkoB"
+  files:
+    - path: /home/core/.ssh/authorized_keys
+      mode: 0600
+      user:
+        name: core
+      group:
+        name: core
+      contents:
+        inline: |
+          ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBjCf1PpvoMshFkoyjFOYUJ6/pLexwEFqr29COJawkoB
+
 
 kernel_arguments:
   should_exist:
