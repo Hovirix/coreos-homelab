@@ -5,15 +5,15 @@ After=postgres.container db.network
 
 [Container]
 Image=ghcr.io/goauthentik/server:2025.10.3
-Command=worker
+Exec=worker
 
-EnvFile=./authentik.env
+EnvironmentFile=./authentik.env
 
 Network=db
 
-Volume=./media:/media
-Volume=./certs:/certs
-Volume=./custom-templates:/templates
+# Volume=authentik-media:/media
+# Volume=authentik-certs:/certs
+# Volume=authentik-templates:/templates
 
 [Service]
 Restart=always
