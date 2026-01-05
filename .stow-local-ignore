@@ -2,4 +2,4 @@ README.*
 .*\.sh$
 .*\.bu$
 .*\.ign$
-
+^init/$

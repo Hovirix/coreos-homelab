@@ -1,4 +1,3 @@
 [Network]
 Driver=bridge
 Internal=true
-NetworkName=db

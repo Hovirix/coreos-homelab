@@ -1,20 +1,20 @@
 [Unit]
 Description=Authentik Server
-Requires=postgres.container db.network apps.network
-After=postgres.container db.network apps.network
 
 [Container]
 Image=ghcr.io/goauthentik/server:2025.10.3
 Exec=server
 
-EnvironmentFile=./authentik.env
+Environment=AUTHENTIK_POSTGRESQL__HOST=postgres
+Environment=AUTHENTIK_POSTGRESQL__NAME=authentik
+Environment=AUTHENTIK_POSTGRESQL__USER=authentik
 
-Network=db
-Network=apps
+Secret=AUTHENTIK_SECRET_KEY,type=env,target=AUTHENTIK_SECRET_KEY
+Secret=AUTHENTIK_POSTGRESQL__PASSWORD,type=env,target=AUTHENTIK_POSTGRESQL__PASSWORD
+
+Network=db.network
+Network=apps.network
 NetworkAlias=authentik-server
-
-# Volume=authentik-media:/media
-# Volume=authentik-templates:/templates
 
 [Service]
 Restart=always

@@ -1,3 +1,2 @@
 [Network]
 Driver=bridge
-NetworkName=proxy

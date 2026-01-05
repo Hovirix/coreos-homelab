@@ -1,17 +1,18 @@
 [Unit]
 Description=PostgreSQL quadlet
-Requires=db.network postgres-data.volume
-After=db.network postgres-data.volume
 
 [Container]
 Image=docker.io/library/postgres:17.7-bookworm
 AutoUpdate=registry
 
-EnvironmentFile=./postgres.env
+Secret=POSTGRES_PASSWORD,type=env,target=POSTGRES_PASSWORD
+Secret=AUTHENTIK_POSTGRESQL__PASSWORD,type=env,target=AUTHENTIK_POSTGRESQL__PASSWORD
+Secret=LINKWARDEN_POSTGRESQL__PASSWORD,type=env,target=LINKWARDEN_POSTGRESQL__PASSWORD
 
-Network=db
-NetworkAlias=pgsql
+Network=db.network
+NetworkAlias=postgres
 
+Volume=./init:/docker-entrypoint-initdb.d:Z
 Volume=postgres-data.volume:/var/lib/postgresql/data:Z
 
 [Service]

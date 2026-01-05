@@ -1,4 +1,2 @@
 [Network]
 Driver=bridge
-Internal=true
-NetworkName=apps

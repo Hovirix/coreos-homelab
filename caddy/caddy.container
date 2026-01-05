@@ -1,23 +1,21 @@
 [Unit]
 Description=Caddy reverse proxy
-Requires=proxy.network apps.network caddy-data.volume caddy-config.volume
-After=proxy.network apps.network caddy-data.volume caddy-config.volume
 
 [Container]
 Image=docker.io/caddybuilds/caddy-cloudflare:alpine
 
-Network=proxy
-Network=apps
+Network=proxy.network
+Network=apps.network
 
 PublishPort=80:80
 PublishPort=443:443
 PublishPort=443:443/udp
 
+Secret=CLOUDFLARE_API_TOKEN,type=env,target=CLOUDFLARE_API_TOKEN
+
 Volume=./Caddyfile:/etc/caddy/Caddyfile:ro,Z
 Volume=caddy-data.volume:/data:Z
 Volume=caddy-config.volume:/config:Z
-
-EnvironmentFile=./caddy.env
 
 [Service]
 Restart=always

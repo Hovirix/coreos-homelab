@@ -1,13 +1,11 @@
 [Unit]
 Description=Vaultwarden quadlet
-Requires=apps.network vaultwarden-data.volume
-After=apps.network vaultwarden-data.volume
 
 [Container]
 Image=ghcr.io/dani-garcia/vaultwarden:latest
 AutoUpdate=registry
 
-Network=apps
+Network=apps.network
 NetworkAlias=vaultwarden
 
 # Environment=SIGNUPS_ALLOWED=false
