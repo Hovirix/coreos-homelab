@@ -4,7 +4,7 @@ Requires=postgres.container
 After=postgres.container
 
 [Container]
-Image=grafana/grafana-enterprise:latest
+Image=docker.io/grafana/grafana
 AutoUpdate=registry
 
 Network=apps.network
