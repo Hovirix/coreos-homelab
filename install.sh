@@ -61,6 +61,12 @@ openssl rand -hex 32 | podman secret create --ignore PAPERLESS_SECRET_KEY -
 openssl rand -hex 16 | podman secret create --ignore PAPERLESS_POSTGRESQL__PASSWORD -
 
 # ==================================================
+# Grafana
+# ==================================================
+
+openssl rand -hex 16 | podman secret create --ignore GRAFANA_POSTGRESQL__PASSWORD -
+
+# ==================================================
 # Copy quadlet files to systemd directory
 # ==================================================
 
@@ -79,7 +85,7 @@ echo "  - Networks..."
 cp -f "$PROJECT_DIR/networks"/* "$SYSTEMD_DIR/"
 
 echo "  - Service files..."
-for service in authentik caddy immich linkwarden n8n paperless-ngx postgres traefik valkey vaultwarden; do
+for service in authentik caddy graphana immich linkwarden n8n paperless-ngx postgres traefik valkey vaultwarden; do
   if [ -d "$PROJECT_DIR/$service" ]; then
     echo "    * $service"
     find "$PROJECT_DIR/$service" -maxdepth 1 -type f ! -name "*.env" -exec cp -f {} "$SYSTEMD_DIR/" \; 2>/dev/null || true

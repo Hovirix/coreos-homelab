@@ -8,13 +8,18 @@ Image=ghcr.io/linkwarden/linkwarden:latest
 AutoUpdate=registry
 
 Environment=MEILI_HOST=http://linkwarden-meilisearch:7700
-Secret=MEILI_MASTER_KEY,type=env,target=MEILI_MASTER_KEY
-
 Environment=NEXTAUTH_URL=https://linkwarden.nemnix.site/api/v1/auth
 
+NEXT_PUBLIC_AUTHENTIK_ENABLED=true
+AUTHENTIK_ISSUER=https://idp.nemnix.site/application/o/linkwarden
+
 Secret=NEXTAUTH_SECRET,type=env,target=NEXTAUTH_SECRET
-Secret=MEILI_MASTER_KEY,type=env,target=MEILI_MASTER_KEY
 Secret=LINKWARDEN_DATABASE_URL,type=env,target=DATABASE_URL
+Secret=MEILI_MASTER_KEY,type=env,target=MEILI_MASTER_KEY
+Secret=MEILI_MASTER_KEY,type=env,target=MEILI_MASTER_KEY
+
+Secret=AUTHENTIK_CLIENT_ID,type=env,target=AUTHENTIK_CLIENT_ID
+Secret=AUTHENTIK_CLIENT_SECRET,type=env,target=AUTHENTIK_CLIENT_SECRET
 
 Network=db.network
 Network=apps.network
