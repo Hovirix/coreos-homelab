@@ -10,8 +10,9 @@ AutoUpdate=registry
 Environment=MEILI_HOST=http://linkwarden-meilisearch:7700
 Environment=NEXTAUTH_URL=https://linkwarden.nemnix.site/api/v1/auth
 
-NEXT_PUBLIC_AUTHENTIK_ENABLED=true
-AUTHENTIK_ISSUER=https://idp.nemnix.site/application/o/linkwarden
+Environment=NEXT_PUBLIC_CREDENTIALS_ENABLED=false
+Environment=NEXT_PUBLIC_AUTHENTIK_ENABLED=true
+Environment=AUTHENTIK_ISSUER=https://idp.nemnix.site/application/o/linkwarden
 
 Secret=NEXTAUTH_SECRET,type=env,target=NEXTAUTH_SECRET
 Secret=LINKWARDEN_DATABASE_URL,type=env,target=DATABASE_URL
