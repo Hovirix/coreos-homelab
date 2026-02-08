@@ -1,5 +1,4 @@
 {
-	debug
 	admin off
 	email hovirix@tutanota.com
 	acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
