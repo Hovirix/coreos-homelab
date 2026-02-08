@@ -1,0 +1,22 @@
+[Unit]
+Description=Valkey
+
+[Container]
+AutoUpdate=registry
+Image=docker.io/valkey/valkey:latest
+Exec=valkey-server --supervised systemd
+
+Network=db.network
+NetworkAlias=valkey
+
+HealthCmd=redis-cli ping || exit 1
+HealthInterval=30s
+HealthTimeout=5s
+HealthRetries=3
+
+[Service]
+Restart=always
+TimeoutStartSec=300
+
+[Install]
+WantedBy=default.target
