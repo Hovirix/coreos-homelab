@@ -20,7 +20,7 @@ jobs:
       - name: Render Ignition with Butane
         uses: docker://quay.io/coreos/butane:release
         with:
-          args: --strict --pretty butane.yml --output ignition.json
+          args: --strict --pretty butane.yaml --output ignition.json
 
       - name: Commit ignition.json
         run: |
